@@ -1,0 +1,153 @@
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@{outputs('Get_item')?['body/Serialnumber']}_@{outputs('Get_item')?['body/Title']}_@{outputs('Get_item')?['body/Salesorder']}_@{outputs('Get_item')?['body/ServiceDate']}_@{outputs('Get_item')?['body/AdaptEmployee']}</title>
+    <style>
+        * {
+          display: flex;
+          flex-flow: column nowrap;
+        }
+
+        head {
+          display: none;
+        }
+
+        html {
+            display: flex;
+            width: 100%;
+            background-color: black;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            background: linear-gradient(217deg, #3f3f3f, #5c21ff 100%),
+                        linear-gradient(127deg, #201919, #50468a),
+                        linear-gradient(336deg, #060057, #1139ff);
+        }
+
+        
+        header, footer {
+            height: 100px;
+            background-color: #2b2b2b;
+            padding: 0px;
+            padding-top: 25px;
+            padding-bottom: 50px;
+            width: 100%;
+            margin: 0px;
+        }
+
+        p, h1, h2 {
+            color: #FFF5EE;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        h1 {
+            padding-left: 70px;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        footer {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-right: 40px;
+        }
+
+        table {
+            margin-left: 35px;
+            text-align: left;
+            flex-flow: row wrap;      
+        }
+        tr, td, th {
+            padding-left: 0px;
+            padding-right: 0px;
+            margin: 0px;
+            text-align: left;
+            font-size: 28px;
+            border: solid black 2px;
+            color: #FFF5EE;   
+        }
+        th {
+            font-weight: 800;
+            width: 30%;
+            flex-flow: row wrap;
+            padding: 5px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        td {
+            height: auto;
+            width: 45%;
+            flex-flow: row wrap;
+            padding: 30px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: #c9c9c9;
+            color: #0f0f0f;
+        }
+
+        tr {
+            flex-flow: row wrap;
+            width: 100%;
+            border: none;
+        }
+
+        .log {
+            width: 75%;
+            height: auto;
+            flex-flow: row wrap;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .log-hdr {
+            width: 75%;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        tbody {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .sig-td {
+            height: auto;
+        }
+  
+    </style>
+  </head>
+ <body>
+<header><h1>Adapt Service Report</h1></header>
+ <table>
+ <tr><th>Customer:</th><td>@{outputs('Get_item')?['body/Title']}</td></tr>
+ <tr><th>Contact:</th><td>@{outputs('Get_item')?['body/Contact']}</td></tr>
+ <tr><th>Email-Address:</th> <td>@{outputs('Get_item')?['body/EmailAddress']}</td></tr>
+ <tr><th>Service Date:</th><td>@{outputs('Get_item')?['body/ServiceDate']}</td></tr>
+ <tr><th>Serial Number:</th><td>@{outputs('Get_item')?['body/Serialnumber']}</td></tr>
+ <tr><th>Adapt Employee:</th><td>@{outputs('Get_item')?['body/AdaptEmployee']}</td></tr>
+ <tr><th>Hours:</th><td>@{outputs('Get_item')?['body/Hours']}</td></tr>
+ <tr><th>Sales Order:</th><td> @{outputs('Get_item')?['body/Salesorder']}</td></tr>
+ <tr><th>Rating:</th><td> @{outputs('Get_item')?['body/Rating']}</td></tr>
+ </table>
+ <table>
+ <tr><th class="log-hdr">Trip Log</th></tr>
+ <tr><td class="log">@{outputs('Get_item')?['body/TripLog']}</td></tr>
+ </table>
+ <table>
+ <tr><th>Customer Signature:</th><td class="sig-td"><img src=@{outputs('Get_item')?['body/SignatureJSON']} /></td></tr>
+ </table>
+ <footer><h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2></footer>
+ </body>
