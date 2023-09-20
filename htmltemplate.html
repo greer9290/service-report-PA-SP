@@ -21,7 +21,7 @@
 
         body {
             display: flex;
-            flex-direction: column;
+            flex-flow: column nowrap;
             padding: 0px;
             margin: 0px;
             width: 100%;
@@ -67,7 +67,7 @@
         table {
             margin-left: 35px;
             text-align: left;
-            flex-flow: row wrap;      
+            flex-flow: row wrap;    
         }
         tr, td, th {
             padding-left: 0px;
@@ -81,15 +81,18 @@
         th {
             font-weight: 800;
             width: 30%;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
             padding: 5px;
             padding-left: 30px;
             padding-right: 30px;
+            align-items: center;
+            text-align: center;
         }
+        
         td {
             height: auto;
             width: 45%;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
             padding: 30px;
             padding-top: 5px;
             padding-bottom: 5px;
@@ -105,16 +108,16 @@
 
         .log {
             width: 75%;
-            height: auto;
+            height: fit-content;
             flex-flow: row wrap;
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
         .log-hdr {
             width: 75%;
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
         tbody {
@@ -126,28 +129,66 @@
         .sig-td {
             height: auto;
         }
+
+        .sig-hdr {
+            width: fit-content;
+            padding: 10px;
+        }
   
     </style>
-  </head>
- <body>
-<header><h1>Adapt Service Report</h1></header>
- <table>
- <tr><th>Customer:</th><td>@{outputs('Get_item')?['body/Title']}</td></tr>
- <tr><th>Contact:</th><td>@{outputs('Get_item')?['body/Contact']}</td></tr>
- <tr><th>Email-Address:</th> <td>@{outputs('Get_item')?['body/EmailAddress']}</td></tr>
- <tr><th>Service Date:</th><td>@{outputs('Get_item')?['body/ServiceDate']}</td></tr>
- <tr><th>Serial Number:</th><td>@{outputs('Get_item')?['body/Serialnumber']}</td></tr>
- <tr><th>Adapt Employee:</th><td>@{outputs('Get_item')?['body/AdaptEmployee']}</td></tr>
- <tr><th>Hours:</th><td>@{outputs('Get_item')?['body/Hours']}</td></tr>
- <tr><th>Sales Order:</th><td> @{outputs('Get_item')?['body/Salesorder']}</td></tr>
- <tr><th>Rating:</th><td> @{outputs('Get_item')?['body/Rating']}</td></tr>
- </table>
- <table>
- <tr><th class="log-hdr">Trip Log</th></tr>
- <tr><td class="log">@{outputs('Get_item')?['body/TripLog']}</td></tr>
- </table>
- <table>
- <tr><th>Customer Signature:</th><td class="sig-td"><img src=@{outputs('Get_item')?['body/SignatureJSON']} /></td></tr>
- </table>
- <footer><h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2></footer>
- </body>
+</head>
+<body>
+    <header><h1>Adapt Service Report</h1></header>
+    <table>
+        <tr>
+            <th>Customer:</th>
+            <td>@{outputs('Get_item')?['body/Title']}</td>
+        </tr>
+        <tr>
+            <th>Contact:</th>
+            <td>@{outputs('Get_item')?['body/Contact']}</td>
+        </tr>
+        <tr>
+            <th>Email-Address:</th>
+            <td>@{outputs('Get_item')?['body/EmailAddress']}</td></tr>
+        <tr>
+            <th>Service Date:</th>
+            <td>@{outputs('Get_item')?['body/ServiceDate']}</td>
+        </tr>
+        <tr>
+            <th>Serial Number:</th>
+            <td>@{outputs('Get_item')?['body/Serialnumber']}</td>
+        </tr>
+        <tr>
+            <th>Adapt Employee:</th>
+            <td>@{outputs('Get_item')?['body/AdaptEmployee']}</td>
+        </tr>
+        <tr>
+            <th>Hours:</th>
+            <td>@{outputs('Get_item')?['body/Hours']}</td>
+        </tr>
+        <tr>
+            <th>Sales Order:</th>
+            <td>@{outputs('Get_item')?['body/Salesorder']}</td>
+        </tr>
+        <tr>
+            <th>Rating:</th>
+            <td>@{outputs('Get_item')?['body/Rating']}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Trip Log</th>
+        </tr>
+        <tr>
+            <td>@{outputs('Get_item')?['body/TripLog']}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th class="sig-hdr">Customer Signature:</th>
+            <td class="sig-td"><img src=@{outputs('Get_item')?['body/SignatureJSON']} /></td>
+        </tr>
+    </table>
+    <footer><h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2></footer>
+</body>
