@@ -30,7 +30,7 @@
         }
 
         
-        header, footer {
+        header {
             height: 50px;
             background-color: #474747;
             padding: 0px;
@@ -38,9 +38,11 @@
             padding-bottom: 45px;
             width: 100%;
             margin: 0px;
+            flex-flow: row wrap;
+            justify-content: space-between;
         }
 
-        p, h1, h2 {
+        h1, h2 {
             color: #FFF5EE;
             font-size: 28px;
             font-weight: 800;
@@ -51,23 +53,13 @@
             padding-bottom: 25px;
             font-size: 32px;
             font-weight: 700;
-        }
-
-        footer {
-            font-size: 12px;
-            font-weight: 700;
-            text-align: right;
-            height: 50px;
-            padding-top: 10px;
-            padding-bottom: 45px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            align-self: left;
         }
 
         h2 {
             font-size: 14px;
             margin-right: 40px;
+            align-self: right;
         }
 
         table {
@@ -149,7 +141,10 @@
     </style>
 </head>
 <body>
-<header><h1>Adapt Service Report</h1></header>
+<header>
+    <h1>Adapt Service Report</h1>
+    <h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2>
+</header>
     <table>
         <tr>
             <th>Customer:</th>
@@ -201,5 +196,4 @@
             <td class="sig-td"><img src=@{outputs('Get_item')?['body/SignatureJSON']} /></td>
         </tr>
     </table>
-    <footer><h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2></footer>
 </body>
