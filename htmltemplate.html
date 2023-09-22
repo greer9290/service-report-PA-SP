@@ -14,7 +14,7 @@
         html {
             display: flex;
             width: 100%;
-            background-color: black;
+            background-color: white;
             margin: 0px;
             padding: 0px;
         }
@@ -22,65 +22,75 @@
         body {
             display: flex;
             flex-flow: column nowrap;
-            padding: 0px;
-            margin: 0px;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
             width: 100%;
-            background: linear-gradient(217deg, #3f3f3f, #5c21ff 100%),
-                        linear-gradient(127deg, #201919, #50468a),
-                        linear-gradient(336deg, #060057, #1139ff);
         }
 
         
         header, footer {
-            height: 100px;
-            background-color: #2b2b2b;
+            height: 50px;
+            background-color: #474747;
             padding: 0px;
-            padding-top: 25px;
-            padding-bottom: 50px;
+            padding-top: 15px;
+            padding-bottom: 45px;
             width: 100%;
             margin: 0px;
         }
 
         p, h1, h2 {
             color: #FFF5EE;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
         }
 
         h1 {
             padding-left: 70px;
-            font-size: 40px;
+            padding-bottom: 25px;
+            font-size: 32px;
             font-weight: 700;
         }
 
         footer {
-            font-size: 22px;
+            font-size: 12px;
             font-weight: 700;
             text-align: right;
+            height: 50px;
+            padding-top: 10px;
+            padding-bottom: 45px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 14px;
             margin-right: 40px;
         }
 
         table {
             margin-left: 35px;
             text-align: left;
-            flex-flow: row wrap;    
+            flex-flow: row wrap;
+            border-collapse: collapse;
+            border-spacing: 0px;    
         }
         tr, td, th {
             padding-left: 0px;
             padding-right: 0px;
+            height: auto;
             margin: 0px;
             text-align: left;
-            font-size: 28px;
-            border: solid black 2px;
-            color: #FFF5EE;   
+            font-size: 16px;
+            border: solid black 1px;
+            color: #0f0f0f;
+            border-collapse: collapse;   
         }
         th {
             font-weight: 800;
-            width: 30%;
+            width: 20%;
             flex-flow: row nowrap;
             padding: 5px;
             padding-left: 30px;
@@ -90,13 +100,12 @@
         }
         
         td {
-            height: auto;
-            width: 45%;
+            width: 55%;
             flex-flow: row nowrap;
             padding: 30px;
             padding-top: 5px;
             padding-bottom: 5px;
-            background-color: #c9c9c9;
+            background-color: rgb(238, 238, 238);
             color: #0f0f0f;
         }
 
@@ -104,6 +113,7 @@
             flex-flow: row wrap;
             width: 100%;
             border: none;
+            border-collapse: collapse;
         }
 
         .log {
@@ -124,6 +134,7 @@
             margin-top: 20px;
             margin-bottom: 20px;
             width: 100%;
+            border-collapse: collapse;
         }
 
         .sig-td {
@@ -178,10 +189,10 @@
     </table>
     <table>
         <tr>
-            <th>Trip Log</th>
+            <th class="log-hdr">Trip Log</th>
         </tr>
         <tr>
-            <td>@{outputs('Get_item')?['body/TripLog']}</td>
+            <td class="log">@{outputs('Get_item')?['body/TripLog']}</td>
         </tr>
     </table>
     <table>
