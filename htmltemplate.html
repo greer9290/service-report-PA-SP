@@ -1,199 +1,225 @@
-<head> 
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@{outputs('Get_item')?['body/Serialnumber']}_@{outputs('Get_item')?['body/Title']}_@{outputs('Get_item')?['body/Salesorder']}_@{outputs('Get_item')?['body/ServiceDate']}_@{outputs('Get_item')?['body/AdaptEmployee']}</title>
+    <title>
+        @{outputs('ServiceReportListFetch')?['body/Serialnumber']}_@{outputs('ServiceReportListFetch')?['body/Title']}_@{outputs('ServiceReportListFetch')?['body/Salesorder']}_@{outputs('ServiceReportListFetch')?['body/ServiceDate']}_@{outputs('ServiceReportListFetch')?['body/AdaptEmployee']}
+    </title>
     <style>
-        * {
-          display: flex;
-          flex-flow: column nowrap;
-        }
-
-        head {
-          display: none;
-        }
-
-        html {
-            display: flex;
-            width: 100%;
-            background-color: white;
-            margin: 0px;
-            padding: 0px;
-        }
-
         body {
-            display: flex;
-            flex-flow: column nowrap;
-            position: relative;
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-            width: 100%;
-        }
-
-        
-        header {
-            height: 50px;
-            background-color: #474747;
-            padding: 0px;
-            padding-top: 15px;
-            padding-bottom: 45px;
-            width: 100%;
             margin: 0px;
-            flex-flow: row wrap;
-            justify-content: space-between;
+            padding: 0px;
+            background-color: #ffffff;
         }
 
-        h1, h2 {
-            color: #FFF5EE;
-            font-size: 28px;
-            font-weight: 800;
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        p {
+            border: solid black 1px;
+            padding: 10px;
         }
 
         h1 {
-            padding-left: 70px;
-            padding-bottom: 25px;
-            font-size: 32px;
-            font-weight: 700;
-            align-self: left;
+            font-size: clamp(22px, 5vw, 30px);
         }
 
         h2 {
-            font-size: 14px;
-            margin-right: 40px;
-            align-self: right;
+            font-size: clamp(12px, 5vw, 16px);
         }
 
-        table {
-            margin-left: 35px;
-            text-align: left;
-            flex-flow: row wrap;
-            border-collapse: collapse;
-            border-spacing: 0px;    
-        }
-        tr, td, th {
-            padding-left: 0px;
-            padding-right: 0px;
-            height: auto;
-            margin: 0px;
-            text-align: left;
-            font-size: 16px;
-            border: solid black 1px;
-            color: #0f0f0f;
-            border-collapse: collapse;   
-        }
-        th {
-            font-weight: 800;
-            width: 20%;
-            flex-flow: row nowrap;
-            padding: 5px;
+        header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
             padding-left: 30px;
             padding-right: 30px;
+            background-color: #1e1f63;
+            color: #ffffff;
+        }
+
+        .tbl-itm {
+            grid-column: span 1;
+            display: flex;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .part-tbl {
+            grid-column: span 1;
+            display: flex;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .hdr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 750;
+            margin-bottom: 2px;
+            padding: 10px;
+            width: 35%;
+            flex-grow: 1;
+        }
+
+        .content {
+            margin-bottom: 2px;
+            padding: 10px;
+            width: 65%;
+            flex-grow: 1;
+        }
+
+        #log-hdr,
+        #sig-hdr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 750;
+        }
+
+        #log-hdr,
+        #sig-hdr,
+        #sig-body {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #sig-body {
+            display: flex;
             align-items: center;
-            text-align: center;
-        }
-        
-        td {
-            width: 55%;
-            flex-flow: row nowrap;
-            padding: 30px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            background-color: rgb(238, 238, 238);
-            color: #0f0f0f;
+            justify-content: center;
         }
 
-        tr {
-            flex-flow: row wrap;
-            width: 100%;
-            border: none;
-            border-collapse: collapse;
-        }
-
-        .log {
-            width: 75%;
-            height: fit-content;
-            flex-flow: row wrap;
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        .log-hdr {
-            width: 75%;
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        tbody {
-            margin-top: 20px;
+        .log-wrapper,
+        .sig-wrapper {
+            margin-top: 10px;
             margin-bottom: 20px;
-            width: 100%;
-            border-collapse: collapse;
         }
 
-        .sig-td {
-            height: auto;
+        #part-tbl-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            margin-left: 30px;
+            margin-right: 30px;
+            gap: 0px;
         }
 
-        .sig-hdr {
-            width: fit-content;
+        #part-tbl-hdr-main {
+            grid-column: span 4;
+            margin-top: 10px;
+            margin-bottom: 0px;
+            max-height: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 750;
             padding: 10px;
         }
-  
+
+        .part-hdr, 
+        #part-tbl-wrapper > p {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+
+        .part-hdr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 750;
+            font-size: 0.9rem;
+            padding: 10px;
+            max-height: 20px;
+        }
+
+        .log-wrapper > div {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 30px;
+            margin-right: 30px;
+            border: solid black 1px;
+            padding: 10px;
+        }
+
+        @media screen and (min-width: 1000px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            header {
+                max-height: 80px;
+            }
+
+            #part-tbl-wrapper,
+            .sig-wrapper,
+            .log-wrapper,
+            header {
+                grid-column: span 2;
+            }
+        }
     </style>
 </head>
 <body>
-<header>
-    <h1>Adapt Service Report</h1>
-    <h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2>
-</header>
-    <table>
-        <tr>
-            <th>Customer:</th>
-            <td>@{outputs('Get_item')?['body/Title']}</td>
-        </tr>
-        <tr>
-            <th>Contact:</th>
-            <td>@{outputs('Get_item')?['body/Contact']}</td>
-        </tr>
-        <tr>
-            <th>Email-Address:</th>
-            <td>@{outputs('Get_item')?['body/EmailAddress']}</td></tr>
-        <tr>
-            <th>Service Date:</th>
-            <td>@{outputs('Get_item')?['body/ServiceDate']}</td>
-        </tr>
-        <tr>
-            <th>Serial Number:</th>
-            <td>@{outputs('Get_item')?['body/Serialnumber']}</td>
-        </tr>
-        <tr>
-            <th>Adapt Employee:</th>
-            <td>@{outputs('Get_item')?['body/AdaptEmployee']}</td>
-        </tr>
-        <tr>
-            <th>Hours:</th>
-            <td>@{outputs('Get_item')?['body/Hours']}</td>
-        </tr>
-        <tr>
-            <th>Sales Order:</th>
-            <td>@{outputs('Get_item')?['body/Salesorder']}</td>
-        </tr>
-        <tr>
-            <th>Rating:</th>
-            <td>@{outputs('Get_item')?['body/Rating']}</td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th class="log-hdr">Trip Log</th>
-        </tr>
-        <tr>
-            <td class="log">@{outputs('Get_item')?['body/TripLog']}</td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th class="sig-hdr">Customer Signature:</th>
-            <td class="sig-td"><img src=@{outputs('Get_item')?['body/SignatureJSON']} /></td>
-        </tr>
-    </table>
+    <div class="container">
+        <header>
+            <h1>Adapt Service Report</h1>
+            <h2>Adapt Laser Systems<br>1218 Guinotte Ave<br>Kansas City, MO 64120</h2>
+        </header>
+        <div class="tbl-itm">
+            <p class="hdr">Customer:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Title']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Contact:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Contact']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Address:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Address']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Email-Address:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/EmailAddress']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Service Date:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/ServiceDate']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Serial Number:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Serialnumber']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Adapt Employee:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/AdaptEmployee']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Hours:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Hours']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Sales Order:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Salesorder']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Rating:</p>
+            <p class="content">@{outputs('ServiceReportListFetch')?['body/Rating']} / 5</p>
+        </div>
+        <div id="part-tbl-wrapper">
+            <p id="part-tbl-hdr-main">Parts Used:</p>
+            <p class="part-hdr">Part Description:</p>
+            <p class="part-hdr">Part Number:</p>
+            <p class="part-hdr">Serial Number:</p>
+            <p class="part-hdr">Quantity:</p>  
+@{variables('PartsValues')}
+        </div>
+        <div class="log-wrapper">
+            <p id="log-hdr">Trip Log</p>
+            @{outputs('ServiceReportListFetch')?['body/TripLog']}
+        </div>
+        <div class="sig-wrapper">
+            <p id="sig-hdr">Customer Signature:</p>
+            <p id="sig-body"><img src=@{outputs('ServiceReportListFetch')?['body/SignatureJSON']} /></p>
+        </div>
+    </div>
 </body>
