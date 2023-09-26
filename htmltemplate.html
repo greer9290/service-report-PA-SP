@@ -69,24 +69,36 @@
         }
 
         #log-hdr,
-        #sig-hdr {
+        .sig-hdr {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
         }
 
         #log-hdr,
-        #sig-hdr,
-        #sig-body {
+        .sig-hdr,
+        .img-container {
             margin-top: 0px;
             margin-bottom: 0px;
             margin-left: 30px;
             margin-right: 30px;
         }
 
-        #sig-body {
+        .img-container,
+        .img-wrapper>img {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
+        }
+
+        .img-wrapper {
+            margin-top: 0px;
+            margin-bottom: 20px;
+            flex-flow: row wrap;
+        }
+
+        .img-wrapper>img {
+            width: 200px;
+            padding: 15px;
         }
 
         .log-wrapper,
@@ -116,8 +128,8 @@
             padding: 10px;
         }
 
-        .part-hdr, 
-        #part-tbl-wrapper > p {
+        .part-hdr,
+        #part-tbl-wrapper>p {
             margin-bottom: 0px;
             margin-top: 0px;
             font-size: 0.9rem;
@@ -132,7 +144,7 @@
             max-height: 20px;
         }
 
-        .log-wrapper > div {
+        .log-wrapper>div {
             margin-top: 0px;
             margin-bottom: 0px;
             margin-left: 30px;
@@ -153,12 +165,15 @@
             #part-tbl-wrapper,
             .sig-wrapper,
             .log-wrapper,
+            .img-wrapper,
+            .sig-hdr,
             header {
                 grid-column: span 2;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -210,16 +225,22 @@
             <p class="part-hdr">Part Description:</p>
             <p class="part-hdr">Part Number:</p>
             <p class="part-hdr">Serial Number:</p>
-            <p class="part-hdr">Quantity:</p>  
-@{variables('PartsValues')}
+            <p class="part-hdr">Quantity:</p>
+            @{variables('PartsValues')}
         </div>
         <div class="log-wrapper">
             <p id="log-hdr">Trip Log</p>
             @{outputs('ServiceReportListFetch')?['body/TripLog']}
         </div>
         <div class="sig-wrapper">
-            <p id="sig-hdr">Customer Signature:</p>
-            <p id="sig-body"><img src=@{outputs('ServiceReportListFetch')?['body/SignatureJSON']} /></p>
+            <p class="sig-hdr">Customer Signature:</p>
+            <p class="img-container"><img src=@{outputs('ServiceReportListFetch')?['body/SignatureJSON']} /></p>
+        </div>
+        <p class="sig-hdr">Pictures:</p>
+        <div class="img-wrapper">
+            <p class="img-container">
+                @{variables('PartsValues')}
+            </p>
         </div>
     </div>
 </body>
