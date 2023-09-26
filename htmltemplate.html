@@ -90,15 +90,24 @@
             justify-content: space-around;
         }
 
+        .img-container {
+            border: solid black 1px;
+            display: inline-block;
+        }
+
         .img-wrapper {
             margin-top: 0px;
             margin-bottom: 20px;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
         }
 
-        .img-wrapper>img {
+        .img-container>img {
             width: 200px;
             padding: 15px;
+            height: auto;
+            width: auto;
+            max-width: 300px;
+            max-height: 300px;
         }
 
         .log-wrapper,
@@ -238,9 +247,9 @@
         </div>
         <p class="sig-hdr">Pictures:</p>
         <div class="img-wrapper">
-            <p class="img-container">
-                @{variables('PartsValues')}
-            </p>
+            <div class="img-container">
+                @{variables('PicList')}
+            </div>
         </div>
     </div>
 </body>
