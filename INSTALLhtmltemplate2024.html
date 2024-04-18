@@ -317,5 +317,57 @@
             <div id="log-hdr">Trip Log</div>
             @{outputs('ServiceReportListFetch')?['body/TripLog']}
         </div>
+        <div class="tbl-itm">
+            <p class="hdr">Onboard Chiller Setpoint:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['OnboardChillerSetpoint']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">External Chiller Setpoint:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['ExternalChillerSetpoint']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 1 Power (CW):</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic1PowerCW']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 1 Power (Max Pulse):</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic1PowerMaxPulse']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 1 Power (Min Pulse):</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic1PowerMinPulse']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 2 Power (CW):</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic2PowerCW']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 2 Power (Max Pulse):</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic2PowerMaxPulse']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 2 Power (Min Pulse):</p>
+            <p class="content">@{body('Get_changes_for_an_item_or_a_file_(properties_only)')?['ColumnHasChanged']?['Optic2PowerMinPulse']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 1 Type:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic1Type']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 1 Serial:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic1Serial']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 2 Type:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic2Type']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Optic 2 Serial:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['Optic2Serial']}</p>
+        </div>
+        <div class="tbl-itm">
+            <p class="hdr">Resonator Serial:</p>
+            <p class="content">@{body('ServiceReportListFetch')?['ResonatorSerial']}</p>
+        </div>
     </div>
 </body>
