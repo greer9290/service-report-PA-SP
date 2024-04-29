@@ -1,7 +1,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        @{outputs('ServiceReportListFetch')?['body/Serialnumber']}_@{outputs('ServiceReportListFetch')?['body/Title']}_@{outputs('ServiceReportListFetch')?['body/Salesorder']}_@{outputs('ServiceReportListFetch')?['body/ServiceDate']}_@{outputs('ServiceReportListFetch')?['body/AdaptEmployee']}
+        @{outputs('ServiceReportListFetch')?['body/Serialnumber']}_@{outputs('ServiceReportListFetch')?['body/Title']}_@{outputs('ServiceReportListFetch')?['body/Salesorder']}_@{outputs('ServiceReportListFetch')?['body/ServiceDate']}
     </title>
     <style>
         body {
@@ -17,11 +17,12 @@
 
         p {
             border: solid black 1px;
-            padding: 10px;
+            padding: 5px;
+            margin: 0px;
         }
 
         h1 {
-            font-size: clamp(22px, 5vw, 30px);
+            font-size: 1.5rem;
         }
 
         h2 {
@@ -31,7 +32,7 @@
         header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
             padding-left: 30px;
             padding-right: 30px;
             background-color: #1e1f63;
@@ -55,30 +56,32 @@
         .hdr {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
-            margin-bottom: 2px;
-            padding: 10px;
+            margin-bottom: 15px;
+            padding: 5px;
             width: 35%;
             flex-grow: 1;
         }
 
         .content {
-            margin-bottom: 2px;
-            padding: 10px;
+            margin-bottom: 15px;
+            padding: 5px;
             width: 65%;
             flex-grow: 1;
+            margin-left: -1px;
         }
 
         #log-hdr,
         .low-hdr {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
+            font-size: 1rem;
         }
 
         #log-hdr,
         .low-hdr,
         .img-container {
-            margin-top: 0px;
-            margin-bottom: 0px;
+            margin-top: 15px;
+            margin-bottom: 7px;
             margin-left: 30px;
             margin-right: 30px;
         }
@@ -98,32 +101,32 @@
         }
 
         .img-wrapper {
-            margin-top: 0px;
-            margin-bottom: 20px;
+            margin-top: 7px;
+            margin-bottom: 7px;
             flex-flow: column wrap;
         }
 
         .img-container>img {
             width: 200px;
-            padding: 15px;
+            padding: 7px;
             height: auto;
             width: auto;
             max-width: 300px;
-            max-height: 300px;
+            max-height: 100px;
         }
 
         .log-wrapper,
         .sig-wrapper {
-            margin-top: 10px;
-            margin-bottom: 20px;
+            margin-top: 7px;
+            margin-bottom: 7px;
         }
 
         #part-tbl-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 7px;
+            margin-bottom: 7px;
             margin-left: 30px;
             margin-right: 30px;
             gap: 0px;
@@ -131,18 +134,18 @@
 
         #hour-tbl-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 7px;
+            margin-bottom: 7px;
             margin-left: 30px;
             margin-right: 30px;
             gap: 0px;
         }
 
         #part-tbl-hdr-main {
-            grid-column: span 4;
-            margin-top: 10px;
+            grid-column: span 5;
+            margin-top: -1px;
             margin-bottom: 0px;
             max-height: 40px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -151,10 +154,10 @@
         }
 
         #hour-tbl-hdr-main {
-            grid-column: span 4;
-            margin-top: 10px;
+            grid-column: span 6;
+            margin-top: -1px;
             margin-bottom: 0px;
-            max-height: 40px;
+            max-height: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
             padding: 5px;
@@ -164,8 +167,9 @@
         #part-tbl-wrapper>p,
         #part-tbl-wrapper>div {
             margin-bottom: 0px;
-            margin-top: 0px;
-            font-size: 0.9rem;
+            margin-top: -1px;
+            margin-left: -1px;
+            font-size: 0.8rem;
             padding: 10px;
         }
 
@@ -173,43 +177,45 @@
         #hour-tbl-wrapper>p,
         #hour-tbl-wrapper>div {
             margin-bottom: 0px;
-            margin-top: 0px;
-            font-size: 0.8rem;
+            margin-top: -1px;
+            margin-left: -1px;
+            font-size: 0.7rem;
             padding: 10px;
         }
 
         #part-tbl-wrapper>.part-hdr {
-            padding-bottom: 25px;
+            padding-bottom: 10px;
         }
 
         #hour-tbl-wrapper>.hour-hdr {
-            padding-bottom: 25px;
+            padding-bottom: 10px;
         }
 
         .part-hdr {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
             font-size: 0.8rem;
-            padding: 10px;
+            padding: 5px;
             max-height: 20px;
         }
 
         .hour-hdr {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 750;
-            font-size: 0.9rem;
-            padding: 10px;
+            font-size: 0.8rem;
+            padding: 5px;
             max-height: 20px;
         }
 
         .log-wrapper>div,
-        .log-wrapper>span {
+        .log-wrapper>span
+        .log-wrapper>p {
             margin-top: 0px;
             margin-bottom: 0px;
             margin-left: 30px;
             margin-right: 30px;
             border: solid black 1px;
-            padding: 10px;
+            padding: 5px;
         }
 
         .log-wrapper>div {
@@ -218,6 +224,16 @@
 
         .log-wrapper>div>p {
             border: none;
+        }
+
+        .install-tbl>div
+        .install-tbl>div>.hdr
+        .install-tbl>div>.content
+        .install-tbl>div>.tbl-itm{
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 0px;
+            margin-bottom: 0px;
         }
 
 
@@ -243,11 +259,11 @@
         }
 
         @media print {
-        div {
+        p {
             break-inside: avoid;
         }
 }
-    </style>
+</style>
 </head>
 
 <body>
@@ -294,29 +310,34 @@
             <p class="content">@{outputs('ServiceReportListFetch')?['body/Rating']} / 5</p>
         </div>
         <div id="hour-tbl-wrapper">
-            <p id="hour-tbl-hdr-main">Hours:</p>
+            <h1 id="hour-tbl-hdr-main">Project Hours:</h1>
             <p class="hour-hdr">Date:</p>
+            <p class="hour-hdr">Rep:</p>
             <p class="hour-hdr">Admin Hours:</p>
             <p class="hour-hdr">Travel Hours:</p>
             <p class="hour-hdr">Labor Hours:</p>
+            <p class="hour-hdr">OT Hours:</p>
             @{variables('HoursOnReport')}   
         </div>
         <div id="part-tbl-wrapper">
-            <p id="part-tbl-hdr-main">Parts Used:</p>
+            <h1 id="part-tbl-hdr-main">Parts Used:</h1>
             <p class="part-hdr">Part Description:</p>
             <p class="part-hdr">Part Number:</p>
             <p class="part-hdr">Serial Number:</p>
             <p class="part-hdr">Quantity:</p>
+            <p class="part-hdr">Status:</p>
             @{variables('PartsValues')}
         </div>
         <div class="sig-wrapper">
-            <p class="low-hdr" id="sig-hdr">Customer Signature:</p>
+            <h1 class="low-hdr" id="sig-hdr">Customer Signature:</h1>
             <div class="img-container"><img src=@{outputs('ServiceReportListFetch')?['body/SignatureJSON']} /></div>
         </div>
         <div class="log-wrapper">
-            <div id="log-hdr">Trip Log</div>
+            <h1 id="log-hdr">Trip Log:</h1>
             @{outputs('ServiceReportListFetch')?['body/TripLog']}
         </div>
+        <h1 class="low-hdr">Install Data:</h1>
+        <div class="install-tbl">
         <div class="tbl-itm">
             <p class="hdr">Onboard Chiller Setpoint:</p>
             <p class="content">@{body('ServiceReportListFetch')?['OnboardChillerSetpoint']}</p>
@@ -368,6 +389,7 @@
         <div class="tbl-itm">
             <p class="hdr">Resonator Serial:</p>
             <p class="content">@{body('ServiceReportListFetch')?['ResonatorSerial']}</p>
+        </div>
         </div>
     </div>
 </body>
